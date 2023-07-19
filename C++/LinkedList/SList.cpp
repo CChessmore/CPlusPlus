@@ -1,7 +1,12 @@
 struct slist_node {
     int info;
     struct slist_node *next;
-}
+    slist_node::slist_node(int info=0)
+    {
+        this->info = info;
+        this->next = nullptr;
+    }
+};
 //Goals:
 //Add to end, print list contents, send contents to file
 
@@ -14,7 +19,7 @@ class SList {
     void insert_start(int data=0)
     {
         slist_node* temp = new slist_node(data);
-        if(head == nullptr) {head = temp;};
+        if(head == nullptr) {head = temp;}
         else
         {
             temp->next = head;
@@ -25,7 +30,7 @@ class SList {
     void insert_end(int data=0)
     {
         slist_node* temp = new slist_node(data);
-        if(head == nullptr) {head = temp;};
+        if(head == nullptr) {head = temp;}
         else
         {
             slist_node* curr = head;
@@ -43,7 +48,7 @@ class SList {
 
         slist_node* temp = head;
 
-        if(temp && temp->info = data)
+        if(temp->info = data && nullptr != temp->next)
         {
             head = temp->next;
             delete temp;
@@ -52,7 +57,7 @@ class SList {
         else
         {
             slist_node* curr = head;
-            while(temp && temp->info != data)
+            while(nullptr != temp->next && temp->info != data)
             {
                 curr = temp;
                 temp = temp->next;
@@ -84,11 +89,13 @@ class SList {
     void send_to_file()
     {
         slist_node* temp = head;
+        string item;
         string list;
         ofstream outfile ("SList.txt");
         while(temp)
         {
-            list.append("["<< temp->info << "]->");
+            item = temp->info;
+            list.append("["+ item +"]->");
             temp = temp->next;
         }
         list.append("[END OF LIST]");
@@ -96,4 +103,4 @@ class SList {
         outfile.close();
     }
 
-}
+};
