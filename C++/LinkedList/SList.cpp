@@ -1,3 +1,6 @@
+#include "header.h"
+
+using namespace std;
 struct slist_node {
     int info;
     struct slist_node *next;

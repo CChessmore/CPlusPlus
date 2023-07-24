@@ -2,4 +2,4 @@
 #include <iostream>
 #include <cmath>
 #include <fstream>
-#include "SList.cpp"
+#include <string>
