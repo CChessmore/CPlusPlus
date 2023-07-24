@@ -27,6 +27,6 @@ int main() {
         myList.insert_end(rand() % 100 + 1);
         myList.print_nodes();
     };
-
+    myList.send_to_file();
     return 0;
 }
