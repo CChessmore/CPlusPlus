@@ -1,3 +1,6 @@
+//PLEASE NOTE
+//All constructors and functions assume valid input!
+
 //Declare classes for square, triangle, circle for 2D shapes
 class Square {
     public:
@@ -9,26 +12,18 @@ class Square {
 
 };
 
-class Triangle {
-    public:
-        int sides = 3;
-        float side1;
-        float side2;
-        float side3;
-        Triangle::createTriangle(float sideA, float sideB, float sideC) {
-            this->side1 = sideA;
-            this->side2 = sideB;
-            this->side3 = sideC;
-        }
+class triangle {
 
+    //Constructor will try to make the triangle is "real" by making interior angles add up to 180
+    //If none is given, the triangle will be equilateral
+    Triangle::newTriangle(float side1, float side2, float side3){
+        this->sides[0] = side1;
+        this->sides[1] = side2;
+        this->sides[2] = side3;
+    }
 };
 
-class Circle {
-    public:
-        float radius;
-        Circle::createCircle(float size) {
-            this->radius = size;
-        }
+class circle {
 
 };
 
