@@ -12,26 +12,32 @@ class Square {
 
 };
 
-class triangle {
-
-    //Constructor will try to make the triangle is "real" by making interior angles add up to 180
-    //If none is given, the triangle will be equilateral
-    Triangle::newTriangle(float side1, float side2, float side3){
-        this->sides[0] = side1;
-        this->sides[1] = side2;
-        this->sides[2] = side3;
-    }
+class Triangle {
+    public:
+        float sideA, sideB, sideC;
+        //Constructor takes 3 float inputs. It's possible to create triangles that
+        //aren't "real" with this current implementation.
+        Triangle::newTriangle(float side1, float side2, float side3){
+            this->sideA = side1;
+            this->sideB = side2;
+            this->sideC = side3;
+        }
 };
 
-class circle {
+class Circle {
+    public:
+        float radius;
+        Circle::createCircle(float r) {
+            this->radius = r;
+        }
 
 };
 
 //Declare classes for cube, 3 & 4 sided pyramids, cylinder, and sphere for 3D shapes
 
 class Cube {
+    //Technically, this class can handle rectangular prisms as well as cubes
     public:
-        int faces = 6;
         float height;
         float width;
         float depth;
@@ -47,6 +53,7 @@ class Cube {
 //and once for the height of the object.
 class PyramidBase3 {
     public:
+    //Base3 is traingular base pyramids
         float side_lengths;
         float height;
         PyramidBase3::createBaseThree(float l, float h) {
@@ -58,6 +65,7 @@ class PyramidBase3 {
 
 class PyramidBase4 {
     public:
+    //Base4 pyramids are square on bottom, like the pyramids in Egypt
         float side_lengths;
         float height;
         PyramidBase4::createBaseFour(float l, float h) {
@@ -67,6 +75,7 @@ class PyramidBase4 {
 };
 
 class Cylinder {
+    //Possible future project to handle calculus operations with this class?
     public:
         float radius;
         float height;
@@ -78,8 +87,10 @@ class Cylinder {
 };
 
 class Sphere {
-    float radius;
-    Sphere::createSphere(float r) {
-        this->radius = r;
-    }
+    //It's spherical!
+    public:
+        float radius;
+        Sphere::createSphere(float r) {
+            this->radius = r;
+        }
 };
