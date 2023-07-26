@@ -17,20 +17,42 @@ int main() {
     int wager = 1;
     int myNumber;
     int multiplier = 2;
-    int high_start = 5;
+    int high = 5;
     bool cash_out = false;
 
     do
     {
-        cout << "Guess a number between 1 and " << high_start << endl;
-        cin >> myNumber;
+        make_wager(wager, myNumber, high);
+        if(guess_is_right())
+        {
+            
+            
+        }
     }
     while(!cash_out);
 
     return 0;
 }
 
-bool guess_is_right()
+int spin_the_wheel(int high)
 {
+    //We need a +1 here, as rand % N will return values between 0 and N-1
+    //On first run this should result in a range of 0 to 5
+    return rand() % (high+1);
+}
 
+void make_wager(int &wager, int &myNumber, int high)
+{
+    cout << "How many points would you like to wager (minimum of 1)? You currently have: " << points << "points." << endl;
+    cin >> wager;
+    cout << "Guess a number between 1 and " << high << endl;
+    cin >> myNumber;
+}
+
+bool guess_is_right(int wager, int &multiplier, int &points)
+{
+    cout << "Winner! You got " << wager * multiplier << " points!\n";
+    cout << "You now have: " << points << " points!";
+    wager = wager * multiplier;
+    points += wager;
 }
