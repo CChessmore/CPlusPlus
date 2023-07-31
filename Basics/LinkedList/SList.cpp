@@ -4,7 +4,7 @@ using namespace std;
 struct slist_node {
     int info;
     struct slist_node *next;
-    slist_node::slist_node(int info=0)
+    slist_node(int info=0)
     {
         this->info = info;
         this->next = nullptr;
@@ -14,9 +14,9 @@ struct slist_node {
 //Add to end, print list contents, send contents to file
 
 class SList {
-    slist_node* head;
-
+    
     public:
+    slist_node* head;
     SList():head(nullptr){ };
     
     void insert_start(int data=0)
@@ -97,7 +97,7 @@ class SList {
         ofstream outfile ("SList.txt");
         while(temp)
         {
-            item = temp->info;
+            item = to_string(temp->info);
             list.append("["+ item +"]->");
             temp = temp->next;
         }
