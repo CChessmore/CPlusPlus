@@ -1,3 +1,6 @@
+//Get some more math functionality access
+#include <math.h>
+
 //Declare classes for square, triangle, circle for 2D shapes
 class Square {
     public:
@@ -68,12 +71,34 @@ class PyramidBase3 {
 
 class PyramidBase4 {
     public:
-        float side_lengths;
+        float length;
+        float width;
         float height;
 
-        PyramidBase4(float l, float h) {
-            this->side_lengths = l;
+        PyramidBase4(float l, float w, float h) {
+            this->length = l;
+            this->width = w;
             this->height = h;
+        }
+
+        float get_volume() {
+            return ((this->length*this->width*this->height )/ 3);
+        }
+
+        float get_surface_area() {
+            float first_sqrt;
+            float second_sqrt;
+
+            //Prepare first side of formula
+            first_sqrt = pow((this->width/2),2) + pow(this->height,2);
+            first_sqrt = this->length*this->width + this->length*sqrt(first_sqrt);
+
+            //Prepare second side of formula
+            second_sqrt = pow((this->length),2) + pow(this->height,2);
+            second_sqrt = this->width*sqrt(second_sqrt);
+
+            //Add both sides and return result
+            return (first_sqrt + second_sqrt);
         }
 };
 
@@ -87,12 +112,30 @@ class Cylinder {
             this->height = h;
         }
 
+        //Formula is A=2PIrh + 2PIr^2
+        float get_surface_area() {
+            return (2*M_PI*this->radius*this->height + (2*M_PI*pow(this->radius,2)));
+        }
+
+        float get_volume() {
+            return M_PI*pow(this->radius,2)*this->height;
+        }
+
 };
 
 class Sphere {
     float radius;
-    
+
     Sphere(float r) {
         this->radius = r;
     }
+
+    float get_surface_area() {
+        return pow((4*M_PI*this->radius),2);
+    }
+
+    float get_volume() {
+        return ((4/3)*M_PI*pow(this->radius,3));
+    }
+
 };
