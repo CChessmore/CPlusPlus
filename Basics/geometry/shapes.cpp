@@ -11,6 +11,14 @@ class Square {
             this->side_length = size;
         }
 
+        float get_area() {
+            return this->side_length*this->side_length;
+        }
+
+        float get_perimiter() {
+            return this->side_length*4;
+        }
+
 };
 
 class Triangle {
@@ -26,6 +34,18 @@ class Triangle {
             this->side3 = sideC;
         }
 
+        //Use Heron's fomrula to find area, since we only have sides
+        float get_area() {
+            float s = get_perimeter();
+
+            s = (s*(s-this->side1)*(s-this->side2)*(s-this->side3));
+            return sqrt(s);
+        }
+
+        float get_perimeter(){
+            return this->side1+this->side2+this->side3;
+        }
+
 };
 
 class Circle {
@@ -36,6 +56,14 @@ class Circle {
             this->radius = size;
         }
 
+        float get_area() {
+            return M_PI*pow(radius,2);
+        }
+
+        float get_perimeter() {
+            return 2*M_PI*this->radius;
+        }
+
 };
 
 //Declare classes for cube, 3 & 4 sided pyramids, cylinder, and sphere for 3D shapes
@@ -43,19 +71,23 @@ class Circle {
 class Cube {
     public:
         int faces = 6;
-        float height;
-        float width;
-        float depth;
+        float side;
 
-        Cube(float h, float w, float d) {
-            this->height = h;
-            this->width = w;
-            this->depth = d;
+        Cube(float l) {
+            this->side = l;
+        }
+
+        float get_surface_area() {
+            return faces*pow(this->side,2);
+        }
+
+        float get_volume() {
+            return pow(this->side,3);
         }
     
 };
 
-//The pyramids will assume equal side lengths and only ask once for base size
+//This pyramid will assume equal side lengths and only ask once for base size
 //and once for the height of the object.
 class PyramidBase3 {
     public:
@@ -65,6 +97,20 @@ class PyramidBase3 {
         PyramidBase3(float l, float h) {
             this->side_lengths = l;
             this->height = h;
+        }
+
+        float get_volume() {
+            return (1/3*(area_of_base() * this->height));
+        }
+
+        float get_surface_area() {
+            //1.5 here replaces the 3/2 in the formula
+            return (area_of_base() + 1.5*side_lengths*this->height);
+        }
+
+        float area_of_base()
+        {
+            return (this->side_lengths*2);
         }
 
 };
