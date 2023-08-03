@@ -8,7 +8,10 @@ using namespace std;
 3) If they get a win, they earn double their wager.
 4) User can "cash out" and save their score, or "let it ride" to reduce 
    their odds for bigger winnings (payouts double every round).
+Using this as a quick review of functional programming.
 
+Done differently, I would improve how variables are tracked and passed. May remake at
+a later date to create a better implementation.
 */
 bool spin_the_wheel(int guess,int high);
 int make_wager(int &wager, int &myNumber, int high, int points);
