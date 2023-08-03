@@ -50,8 +50,8 @@ int main() {
                 //This should result in a multiplicative rise in reward
                 //First is 2, then 4, then 8, 16, 32, etc.
                 //Might change to multiplying itself if the payouts don't feel fun/high enough
-                multiplier += multiplier;
                 cout << "Multiplier is " << multiplier << endl;
+                high = high + 5;
                 win = false;
             }
         }
@@ -66,6 +66,11 @@ int main() {
             }
             else
             {
+                if(points <= 0)
+                {
+                    cout << "Not enough points!" << endl;
+                    break;
+                }
                 cout << "Going again!" << endl;
             }
         }
@@ -73,7 +78,7 @@ int main() {
     while(!cash_out && points > 0);
 
     cout << "Your final score is: " << points << endl;
-    cout << "Thanks for playing!";
+    cout << "Thanks for playing!" << endl;
 
     return 0;
 }
@@ -95,12 +100,12 @@ int make_wager(int &wager, int &myNumber, int high, int points)
 {
     do
     {
-        cout << "in loop\n";
     cout << "How many points would you like to wager (minimum of 1)? You currently have: " << points << " points." << endl;
     cin >> wager;
-    cout << "Guess a number between 1 and " << high << endl;
-    cin >> myNumber;}
-    while(wager > 0 && myNumber <= high);
+    cout << "Guess a number between 0 and " << high << " inclusive." << endl;
+    cin >> myNumber;
+    }
+    while(!(wager < points+1 && myNumber <= high));
     return myNumber;
 }
 
@@ -110,14 +115,14 @@ bool guess_is_right(int wager, int &multiplier, int &points)
     cout << "Winner! You got " << wager * multiplier << " points!\n";
     cout << "You now have: " << points << " points!\n";
     wager = wager * multiplier;
-    
+    multiplier = multiplier + multiplier;
     return true;
 }
 
 int guess_is_wrong(int wager, int multiplier, int &points)
 {
     cout << "Sorry, better luck next time!" << endl;
-    points = points - (wager*multiplier);
-    cout << "You lost " << wager*multiplier << " points, leaving you with " << points << endl;
+    points = points - wager;
+    cout << "You lost " << wager << " points, leaving you with " << points << endl;
     return points;
 }
