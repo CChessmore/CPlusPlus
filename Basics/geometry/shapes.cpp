@@ -54,6 +54,7 @@ class Triangle {
         }
 
         //Put 3 sides in each array, sort, and compare. If triangles are equal, these will match and return True
+        //My gut says there's a better way to do this, but it is eluding me.
         friend auto operator ==(Triangle t1, Triangle t2)
         {
             float t1_arr[] = {t1.side1, t1.side2, t1.side3};
@@ -87,7 +88,7 @@ class Circle {
             return 2*M_PI*this->radius;
         }
         
-        //If radii are the same, the circles are equal (in this implementation. I don't know if there's wild magic math to disprove this)
+        //If radii are the same, the circles are equal (Specifically in this implementation. I don't know if there's wild magic math to disprove this)
         friend auto operator ==(Circle c1, Circle c2)
         {
             return (c1->radius == c2->radius);
@@ -105,6 +106,7 @@ class Cube {
             this->side = l;
         }
 
+        //Formulas for surface area and volume
         float get_surface_area() {
             return faces*pow(this->side,2);
         }
@@ -127,6 +129,7 @@ class PyramidBase3 {
             this->height = h;
         }
 
+        //Formulas for surface area, volume, area of base
         float get_volume() {
             return (1/3*(area_of_base() * this->height));
         }
@@ -155,6 +158,7 @@ class PyramidBase4 {
             this->height = h;
         }
 
+        //Formulas for surface area, volume, area of base
         float get_volume() {
             return ((this->length*this->width*this->height )/ 3);
         }
@@ -186,7 +190,8 @@ class Cylinder {
             this->height = h;
         }
 
-        //Formula is A=2PIrh + 2PIr^2
+        //Formulas for surface area and volume
+        //Surface area formula is A=2PIrh + 2PIr^2
         float get_surface_area() {
             return (2*M_PI*this->radius*this->height + (2*M_PI*pow(this->radius,2)));
         }
@@ -203,7 +208,7 @@ class Sphere {
     Sphere(float r) {
         this->radius = r;
     }
-
+//Formulas for surface area and volume
     float get_surface_area() {
         return pow((4*M_PI*this->radius),2);
     }
